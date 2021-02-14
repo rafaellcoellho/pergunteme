@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pergunteme"
+version = "0.1.0"
+description = "Site inspirado em https://curiouscat.me/ e https://ask.fm/. Trabalho final da cadeira de banco de dados."
+authors = ["rafaellcoellho <rafaellcoellho@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^3.1.6"
+psycopg2 = "^2.8.6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
