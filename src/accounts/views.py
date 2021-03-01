@@ -12,13 +12,14 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
+
 class ExploreView(ListView):
     template_name = "account/explore.html"
 
     def get(self, request):
         my_user_id = request.user.id
         all_users = CustomUser.objects.exclude(id=my_user_id).exclude(is_superuser=True)
-        return render(request, self.template_name, {'all_users': all_users})
+        return render(request, self.template_name, {"all_users": all_users})
 
 
 class ProfileView(DetailView):
@@ -26,4 +27,4 @@ class ProfileView(DetailView):
 
     def get(self, request, user_username):
         user = CustomUser.objects.get(username=user_username)
-        return render(request, self.template_name, {'profile': user})
+        return render(request, self.template_name, {"profile": user})

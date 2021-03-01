@@ -10,19 +10,19 @@ class ReceivedQuestionsView(CreateView):
 
     def get(self, request):
         my_user_id = request.user.id
-        unanswered_questions_queryset = Question.objects.filter(answer__id__isnull=True, id=my_user_id)
+        unanswered_questions_queryset = Question.objects.filter(
+            answer__id__isnull=True, id=my_user_id
+        )
 
         def process_information(question):
             return {
                 "form": AnswerForm(initial={"question": question.id}),
-                "question": question
+                "question": question,
             }
 
         infos = map(process_information, unanswered_questions_queryset)
 
-        context = {
-            "infos_unanswered_questions": infos
-        }
+        context = {"infos_unanswered_questions": infos}
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -31,7 +31,5 @@ class ReceivedQuestionsView(CreateView):
         if form.is_valid():
             form.save(commit=False)
 
-        context = {
-            "form": form
-        }
+        context = {"form": form}
         return render(request, self.template_name, context)
