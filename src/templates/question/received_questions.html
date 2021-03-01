@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Received Questions | pergunte.me{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{% static 'css/question/received_questions.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container received-questions">
+  <h1 class="title">Received Questions</h1>
+
+  {% for question in unanswered_questions %}
+    <div class="list-received-questions">
+      <div class="row">
+        <div class="col">
+          <small class="text-muted">
+            <em>Sent by&nbsp;</em>
+            {% if question.anonymous %}
+              anonymous
+            {% else %}
+              <a href="{% url 'profile' user_username=question.sender.username%}">
+                {{ question.sender.username }}
+              </a>
+            {% endif %}
+          </small>
+          <h1>{{ question.content }} </h1>
+
+          {% comment %} <%= render 'answers/form', answer: Answer.new, question: question %> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="row profile">
+      <div class="col text-center">
+        <p class="empty-message">Nothing to see <span>here</span>.</p>
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

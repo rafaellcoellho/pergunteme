@@ -1,0 +1,18 @@
+.received-questions .title {
+  margin-bottom: 30px;
+}
+.received-questions .list-received-questions {
+  margin: 15px 0px 15px 0px;
+  border: 2px solid lightgray;
+  padding: 20px;
+  border-radius: 15px;
+}
+.received-questions .list-received-questions a:link,
+.received-questions .list-received-questions a:visited,
+.received-questions .list-received-questions a:hover {
+  color: #d60042;
+}
+.received-questions .list-received-questions h1 {
+  font-size: 1.5em;
+  color: #d60042;
+}
