@@ -10,25 +10,64 @@
 {% block content %}
 {% if user.is_authenticated %}
   {% include 'navbar.html' %}
-  <div class="container home">
-    <div class="row">
-      <div class="col-md-10">
-        <h1>{{ user.username }}</h1>
-        <h2>{{ user.email }}</h2>
-      </div>
-      <div class="col-md-2">
-        <div class="box-answered-questions">
-          <h3>Answered Questions</h3>
-          {% comment %} <h4>{{} user.answered_questions.size }}</h4> {% endcomment %}
+  {% with answered_questions=user.questions_adressee.count %}
+    <div class="container home">
+      <div class="row">
+        <div class="col-md-10">
+          <h1>{{ user.username }}</h1>
+          <h2>{{ user.email }}</h2>
+        </div>
+        <div class="col-md-2">
+          <div class="box-answered-questions">
+            <h3>Answered Questions</h3>
+            <h4>{{ answered_questions }}</h4>
+          </div>
         </div>
       </div>
+      {% for q in user.questions_adressee.all %}
+        {% comment %} {% if q.answer.content != None %} {% endcomment %}
+          <div class="box-question">
+            <div class="row">
+              <div class="col-sm-10">
+                <h1>{{ q.content }} </h1>
+                <p>{{ q.answer.content }}</p>
+              </div>
+              <div class="col-sm-2 text-right">
+                <div class="likes">
+                  {% comment %}{% if current_user.id == @user.id %}
+                    <i class="fas fa-heart text-danger"></i>
+                  <% else %>
+                    <%= render 'likes/form', like_form_options(q.answer) %> 
+                  {% endif %} {% endcomment %}
+                  {% comment %} <div>
+                    {{ q.answer.likes.count }} likes
+                  </div> {% endcomment %}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-right">
+                <p class="sender_profile">
+                  <span>Sent by </span>
+                  {% if q.anonymous %}
+                    anonymous
+                  {% else %}
+                    {{ q.sender.username }}
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% comment %} {% endif %} {% endcomment %}
+      {% empty %}
+        <div class="row">
+          <div class="col text-center">
+            <p class="empty-message">Nothing to see <span>here</span>.</p>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-    <div class="row">
-      <div class="col text-center">
-        <p class="empty-message">Nothing to see <span>here</span>.</p>
-      </div>
-    </div>
-  </div>
+  {% endwith %}
 {% else %}
   <div class="home-without-auth">
     <div class="home-without-auth__logo">
