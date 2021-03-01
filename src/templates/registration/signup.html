@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Sign Up | pergunte.me{% endblock %}
+
+{% block stylesheets %}
+  <link
+    rel="stylesheet"
+    href="{% static 'css/registration/signup.css' %}"
+  >
+{% endblock %}
 
 {% block content %}
-<h2>Sign Up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign Up</button>
-</form>
+  <div class="sign-up">
+    <div class="sign-up__logo">
+      <img
+        class=""
+        src="{% static 'img/logo.png' %}"
+        width="72"
+        height="72"
+      >
+    </div>
+    <div class="sign-up__wrapper">
+      <div class="sign-up__title">
+        <h2>Sign in to pergunte.me</h1>
+      </div>
+      <div class="sign-up__gray-area">
+        <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button
+            type="submit"
+            class="btn btn-success btn-block"
+          >
+            Sign up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -1,21 +1,21 @@
-.login {
+.sign-up {
   height: 100%;
   display: grid;
   place-items: center;
 }
-.login__logo {
+.sign-up__logo {
   width: 100%;
   display: grid;
   place-items: center;
   padding: 30px 0;
 }
-.login__wrapper {
+.sign-up__wrapper {
   display: grid;
   place-items: center;
   margin: 0 auto;
   width: 400px;
 }
-.login__gray-area {
+.sign-up__gray-area {
   background-color: #f6f8fa;
   border-radius: 5px;
   border: 1px solid #eaecef;
@@ -23,6 +23,6 @@
   margin-top: 16px;
   padding: 20px;
 }
-.login__gray-area label {
+.sign-up__gray-area label {
   font-weight: 600;
 }
