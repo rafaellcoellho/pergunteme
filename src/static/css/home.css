@@ -65,16 +65,15 @@
       font-weight: normal;
     }
   }
-}
-
-.empty-message {
-  font-family: $font-special;
+} */
+.home .empty-message {
   color: gray;
   margin-top: 50px;
-  span {
-    font-weight: bold;
-  }
-} */
+  
+} 
+.home .empty-message span {
+  font-weight: bold;
+}
 .home-without-auth {
   height: 100%;
   display: grid;
