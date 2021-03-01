@@ -1,14 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a> |
-  <a href="{% url 'signup' %}">Sign Up</a>
+  <div class="home-without-auth">
+    <div class="home-without-auth__logo">
+      <img
+        class=""
+        src="{% static 'img/logo.png' %}"
+        width="72"
+        height="72"
+      >
+    </div>
+    <div class="home-without-auth__wrapper">
+      <div class="home-without-auth__title">
+        <h2>Bem vindo ao pergunte.me</h1>
+      </div>
+      <div class="home-without-auth__gray-area">
+        <label> Já tem uma conta? </label>
+        <div class="home-without-auth__login-bt">
+          <a href="{% url 'login' %}">
+            <button
+              class="btn btn-primary btn-block"
+              type="button"
+            >
+              Entrar
+            </button>
+          </a>
+        </div>
+        <label> Se não, basta clicar aqui: </label>
+        <div class="home-without-auth__signin-bt">
+          <a href="{% url 'signup' %}">
+            <button
+              class="btn btn-info btn-block"
+              type="button"
+            >
+              Criar uma conta
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endif %}
 {% endblock %}
