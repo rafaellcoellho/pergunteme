@@ -1,3 +1,80 @@
+.home h1 {
+  color: black;
+  font-weight: bold;
+}
+.home h2 {
+  color: #d60042;
+  font-size: 1.5em;
+}
+
+.home a {
+  color: #d60042;
+  outline: 0 !important;
+}
+
+.home a:hover {
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+.home .box-answered-questions {
+  background-color: #d60042;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+}
+.home .box-answered-questions h3 {
+  font-size: 1.2em;
+  margin-top: 0;
+}
+.home .box-answered-questions h4 {
+  font-size: 3em;
+  font-weight: bold;
+  font-family: 'Viga', sans-serif;
+  margin-bottom: 0;
+}
+
+/* .box-question {
+  border: 2px solid rgb(234, 235, 236);
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+
+  h1 {
+    color: #d60042;
+    font-size: 1.7em;
+    font-weight: lighter;
+  }
+  p {
+    font-family: $font-special;
+    padding: 5px;
+    color: black;
+  }
+  
+  .sender_profile {
+    font-size: 0.8em;
+    margin-bottom: 0;
+    padding: 0;
+    font-style: italic;
+    font-weight: bold;
+    color: #616161;
+    span {
+      color: rgb(154, 155, 156);
+      font-style: normal;
+      font-weight: normal;
+    }
+  }
+}
+
+.empty-message {
+  font-family: $font-special;
+  color: gray;
+  margin-top: 50px;
+  span {
+    font-weight: bold;
+  }
+} */
 .home-without-auth {
   height: 100%;
   display: grid;

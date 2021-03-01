@@ -9,8 +9,21 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {% include 'navbar.html' %}
+  <div class="container home">
+    <div class="row">
+      <div class="col-md-10">
+        <h1>{{ user.username }}</h1>
+        <h2>{{ user.email }}</h2>
+      </div>
+      <div class="col-md-2">
+        <div class="box-answered-questions">
+          <h3>Answered Questions</h3>
+          {% comment %} <h4>{{} user.answered_questions.size }}</h4> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
 {% else %}
   <div class="home-without-auth">
     <div class="home-without-auth__logo">
