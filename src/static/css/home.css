@@ -35,37 +35,34 @@
   margin-bottom: 0;
 }
 
-/* .box-question {
+.home .box-question {
   border: 2px solid rgb(234, 235, 236);
   padding: 15px;
   margin-top: 20px;
   border-radius: 5px;
-
-  h1 {
-    color: #d60042;
-    font-size: 1.7em;
-    font-weight: lighter;
-  }
-  p {
-    font-family: $font-special;
-    padding: 5px;
-    color: black;
-  }
-  
-  .sender_profile {
-    font-size: 0.8em;
-    margin-bottom: 0;
-    padding: 0;
-    font-style: italic;
-    font-weight: bold;
-    color: #616161;
-    span {
-      color: rgb(154, 155, 156);
-      font-style: normal;
-      font-weight: normal;
-    }
-  }
-} */
+}
+.home .box-question h1 {
+  color: #d60042;
+  font-size: 1.7em;
+  font-weight: lighter;
+}
+.home .box-question p {
+  padding: 5px;
+  color: black;
+}
+.home .box-question .sender_profile {
+  font-size: 0.8em;
+  margin-bottom: 0;
+  padding: 0;
+  font-style: italic;
+  font-weight: bold;
+  color: #616161;
+}
+.home .box-question .sender_profile span {
+  color: rgb(154, 155, 156);
+  font-style: normal;
+  font-weight: normal;
+}
 .home .empty-message {
   color: gray;
   margin-top: 50px;
