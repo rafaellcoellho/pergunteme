@@ -23,10 +23,13 @@ class Question(models.Model):
         verbose_name_plural = "questions"
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     def get_absolute_url(self):
         return reverse("question_detail", args=[str(self.id)])
+
+    def number_of_questions_answered(self):
+        return 15
 
 
 class Answer(models.Model):
@@ -38,7 +41,7 @@ class Answer(models.Model):
         verbose_name_plural = "answers"
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     def get_absolute_url(self):
         return reverse("answer_detail", args=[str(self.id)])
@@ -53,7 +56,7 @@ class Like(models.Model):
         verbose_name_plural = "likes"
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     def get_absolute_url(self):
         return reverse("like_detail", args=[str(self.id)])
