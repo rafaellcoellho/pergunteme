@@ -4,12 +4,15 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}pergunteme{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/libs/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'fonts/fa/css/all.min.css' %}">
 </head>
 <body>
   <main>
     {% block content %}
     {% endblock %}
   </main>
+  <script src="{% static 'js/libs/jquery.min.js' %}"></script>
+  <script src="{% static 'js/libs/bootstrap.min.js' %}"></script>
 </body>
 </html>
