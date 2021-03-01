@@ -1,29 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Welcome | pergunte.me{% endblock %}
+{% block title %}{{profile.username}} | pergunte.me{% endblock %}
 
 {% block stylesheets %}
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
 {% include 'navbar.html' %}
   <div class="container home">
     <div class="row">
       <div class="col-md-10">
-        <h1>{{ user.username }}</h1>
-        <h2>{{ user.email }}</h2>
+        <h1>{{ profile.username }}</h1>
+        <h2>{{ profile.email }}</h2>
       </div>
       <div class="col-md-2">
         <div class="box-answered-questions">
           <h3>Answered Questions</h3>
-          <h4>{{ user.questions_adressee.count }}</h4>
+          <h4>{{ profile.questions_adressee.count }}</h4>
         </div>
       </div>
     </div>
-    {% for q in user.questions_adressee.all %}
+    {% for q in profile.questions_adressee.all %}
       {% comment %} {% if q.answer.content != None %} {% endcomment %}
         <div class="box-question">
           <div class="row">
@@ -66,40 +65,4 @@
       </div>
     {% endfor %}
   </div>
-{% else %}
-  <div class="home-without-auth">
-    <div class="home-without-auth__logo">
-      <img src="{% static 'img/logo.png' %}" width="72" height="72">
-    </div>
-    <div class="home-without-auth__wrapper">
-      <div class="home-without-auth__title">
-        <h2>Welcome!</h1>
-      </div>
-      <div class="home-without-auth__gray-area">
-        <label> Already have an account? </label>
-        <div class="home-without-auth__login-bt">
-          <a href="{% url 'login' %}">
-            <button
-              class="btn btn-primary btn-block"
-              type="button"
-            >
-              Login
-            </button>
-          </a>
-        </div>
-        <label> If not, just click here: </label>
-        <div class="home-without-auth__signin-bt">
-          <a href="{% url 'signup' %}">
-            <button
-              class="btn btn-info btn-block"
-              type="button"
-            >
-              Sign up
-            </button>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endif %}
 {% endblock %}

@@ -1,0 +1,21 @@
+.users h1 {
+  color: black;
+  font-weight: bold;
+}
+.users h3 {
+  color: #d60042;
+}
+.users .alert {
+  background-color: #d60042;
+  color: white;
+}
+.users table p strong {
+  color: #d60042;
+  font-size: 1.5em;
+}
+.users table a:hover {
+  text-decoration: none;
+}
+.users input {
+  box-shadow: none !important;
+}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Explore | pergunte.me{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{% static 'css/account/explore.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="container users">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Explore</h1>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <tbody>
+        {% for user in all_users %}
+          <tr>
+            <td>
+              <a href="{% url 'profile' user_username=user.username %}">
+                <p><strong>/{{ user.username }}</strong></p>
+                <p class="text-muted">{{ user.email }}</p>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
