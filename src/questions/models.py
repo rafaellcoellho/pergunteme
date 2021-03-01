@@ -7,14 +7,14 @@ class Question(models.Model):
     sender = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='questions_sender',
-        related_query_name='question',
+        related_name="questions_sender",
+        related_query_name="question",
     )
     adressee = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='questions_adressee',
-        related_query_name='question',
+        related_name="questions_adressee",
+        related_query_name="question",
     )
     anonymous = models.BooleanField("if the question is send as anonymous")
 
