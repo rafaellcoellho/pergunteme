@@ -65,6 +65,14 @@ argon2 = ["argon2-cffi (>=16.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+category = "main"
+description = "Best way to have Django DRY forms"
+name = "django-crispy-forms"
+optional = false
+python-versions = ">=3.5"
+version = "1.11.1"
+
+[[package]]
 category = "dev"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
 name = "mypy-extensions"
@@ -137,7 +145,7 @@ python-versions = "*"
 version = "3.7.4.3"
 
 [metadata]
-content-hash = "7392d663bf4ebabdc6b571c0ef91ab4b900c365f4e356bda7554f0198beff63a"
+content-hash = "d2ab25dd0e1d57b8071ffa68d3c3b49cf63059d20a38b94f05ba7841c9d0071b"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -159,6 +167,10 @@ click = [
 django = [
     {file = "Django-3.1.6-py3-none-any.whl", hash = "sha256:169e2e7b4839a7910b393eec127fd7cbae62e80fa55f89c6510426abf673fe5f"},
     {file = "Django-3.1.6.tar.gz", hash = "sha256:c6c0462b8b361f8691171af1fb87eceb4442da28477e12200c40420176206ba7"},
+]
+django-crispy-forms = [
+    {file = "django-crispy-forms-1.11.1.tar.gz", hash = "sha256:5c600dea66e2f435f774fe2c4cacfb5b5eb9914dd6da0728edd174b95f6956fd"},
+    {file = "django_crispy_forms-1.11.1-py3-none-any.whl", hash = "sha256:2ea206f35a9554597b89315ea52737d32d2fd9f5304e79a469a08887aa0824b0"},
 ]
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},

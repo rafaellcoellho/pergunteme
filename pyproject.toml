@@ -9,6 +9,7 @@ license = "MIT"
 python = "^3.8"
 django = "^3.1.6"
 psycopg2 = "^2.8.6"
+django-crispy-forms = "^1.11.1"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"

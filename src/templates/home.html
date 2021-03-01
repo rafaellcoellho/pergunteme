@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Welcome | pergunte.me{% endblock %}
 
 {% block stylesheets %}
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -23,28 +23,28 @@
     </div>
     <div class="home-without-auth__wrapper">
       <div class="home-without-auth__title">
-        <h2>Bem vindo ao pergunte.me</h1>
+        <h2>Welcome!</h1>
       </div>
       <div class="home-without-auth__gray-area">
-        <label> Já tem uma conta? </label>
+        <label> Already have an account? </label>
         <div class="home-without-auth__login-bt">
           <a href="{% url 'login' %}">
             <button
               class="btn btn-primary btn-block"
               type="button"
             >
-              Entrar
+              Login
             </button>
           </a>
         </div>
-        <label> Se não, basta clicar aqui: </label>
+        <label> If not, just click here: </label>
         <div class="home-without-auth__signin-bt">
           <a href="{% url 'signup' %}">
             <button
               class="btn btn-info btn-block"
               type="button"
             >
-              Criar uma conta
+              Sign up
             </button>
           </a>
         </div>

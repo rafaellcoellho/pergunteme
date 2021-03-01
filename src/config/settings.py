@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "accounts",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,8 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+
+# django-crispy-forms config
+# https://django-crispy-forms.readthedocs.io/en/latest/index.html
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
