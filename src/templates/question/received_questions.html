@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Received Questions | pergunte.me{% endblock %}
 
@@ -12,22 +13,32 @@
 <div class="container received-questions">
   <h1 class="title">Received Questions</h1>
 
-  {% for question in unanswered_questions %}
+  {% for info in infos_unanswered_questions %}
     <div class="list-received-questions">
       <div class="row">
         <div class="col">
           <small class="text-muted">
             <em>Sent by&nbsp;</em>
-            {% if question.anonymous %}
+            {% if info.question.anonymous %}
               anonymous
             {% else %}
-              <a href="{% url 'profile' user_username=question.sender.username%}">
-                {{ question.sender.username }}
+              <a href="{% url 'profile' user_username=info.question.sender.username%}">
+                {{ info.question.sender.username }}
               </a>
             {% endif %}
           </small>
-          <h1>{{ question.content }} </h1>
+          <h1>{{ info.question.content }} </h1>
 
+          <form method="POST">
+            {% csrf_token %}
+            {{info.form|crispy}}
+            <button
+              type="submit"
+              class="btn btn-danger float-right"
+            >
+              Reply
+            </button>
+          </form>
           {% comment %} <%= render 'answers/form', answer: Answer.new, question: question %> {% endcomment %}
         </div>
       </div>
