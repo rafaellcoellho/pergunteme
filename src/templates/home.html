@@ -19,17 +19,17 @@
       <div class="col-md-2">
         <div class="box-answered-questions">
           <h3>Answered Questions</h3>
-          <h4>{{ user.questions_adressee.count }}</h4>
+          <h4>{{ number_of_answered_questions }}</h4>
         </div>
       </div>
     </div>
-    {% for q in user.questions_adressee.all %}
+    {% for info in infos_answers %}
       {% comment %} {% if q.answer.content != None %} {% endcomment %}
         <div class="box-question">
           <div class="row">
             <div class="col-sm-10">
-              <h1>{{ q.content }} </h1>
-              <p>{{ q.answer.content }}</p>
+              <h1>{{ info.answer.question.content }} </h1>
+              <p>{{ info.answer.content }}</p>
             </div>
             <div class="col-sm-2 text-right">
               <div class="likes">
@@ -48,10 +48,10 @@
             <div class="col text-right">
               <p class="sender_profile">
                 <span>Sent by </span>
-                {% if q.anonymous %}
+                {% if info.answer.question.anonymous %}
                   anonymous
                 {% else %}
-                  {{ q.sender.username }}
+                  {{ info.answer.question.sender.username }}
                 {% endif %}
               </p>
             </div>

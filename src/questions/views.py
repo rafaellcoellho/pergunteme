@@ -11,7 +11,7 @@ class ReceivedQuestionsView(CreateView):
     def get(self, request):
         my_user_id = request.user.id
         unanswered_questions_queryset = Question.objects.filter(
-            answer__id__isnull=True, id=my_user_id
+            answer__id__isnull=True, adressee__id=my_user_id
         )
 
         def process_information(question):
@@ -29,7 +29,7 @@ class ReceivedQuestionsView(CreateView):
 
         form = AnswerForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
+            form.save()
 
         context = {"form": form}
         return render(request, self.template_name, context)
