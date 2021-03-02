@@ -33,15 +33,24 @@ class ProfileView(CreateView):
     def get(self, request, user_username):
         my_user_id = request.user.id
         user = CustomUser.objects.get(username=user_username)
-        answers = list(
-            Answer.objects.select_related("question").filter(question__adressee=user.id)
-        )
+        answers_queryset = Answer.objects.select_related("question").filter(question__adressee=user.id)
+
+        def process_information(answer):
+            return {
+                "form": LikeForm(initial={"user": my_user_id, "answer": answer.id}),
+                "answer": answer,
+                "number_of_likes": answer.like_set.count(),
+                "current_user_like": answer.like_set.filter(user=my_user_id).exists()
+            }
+
+        infos = list(map(process_information, answers_queryset))
+
         form = QuestionForm(initial={"sender": my_user_id, "adressee": user.id})
         context = {
             "form": form,
             "profile": user,
-            "answers": answers,
-            "number_of_answered_questions": len(answers),
+            "infos": infos,
+            "number_of_answered_questions": len(infos),
         }
         return render(request, self.template_name, context)
 

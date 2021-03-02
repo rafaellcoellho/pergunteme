@@ -40,23 +40,41 @@
         </div>
       </form>
     {% endif %}
-    {% for answer in answers %}
+    {% for info in infos %}
       <div class="box-question">
         <div class="row">
           <div class="col-sm-10">
-            <h1>{{ answer.question.content }} </h1>
-            <p>{{ answer.content }}</p>
+            <h1>{{ info.answer.question.content }} </h1>
+            <p>{{ info.answer.content }}</p>
           </div>
           <div class="col-sm-2 text-right">
             <div class="likes">
-              {% comment %}{% if current_user.id == @user.id %}
-                <i class="fas fa-heart text-danger"></i>
-              <% else %>
-                <%= render 'likes/form', like_form_options(q.answer) %> 
-              {% endif %} {% endcomment %}
-              {% comment %} <div>
-                {{ q.answer.likes.count }} likes
-              </div> {% endcomment %}
+              {% if info.current_user_like %}
+                <form method="POST">
+                  {% csrf_token %}
+                  {{info.form|crispy}}
+                  <button
+                    type="submit"
+                    name="commit"
+                    class="btn-like fas fa-heart text-danger"
+                  >
+                  </button>
+                </form>
+              {% else %}
+                <form method="POST">
+                  {% csrf_token %}
+                  {{info.form|crispy}}
+                  <button
+                    type="submit"
+                    name="commit"
+                    class="btn-like fas fa-heart text-secondary"
+                  >
+                  </button>
+                </form>
+              {% endif %}
+              <div>
+                {{ info.number_of_likes }} likes
+              </div>
             </div>
           </div>
         </div>
@@ -64,10 +82,10 @@
           <div class="col text-right">
             <p class="sender_profile">
               <span>Sent by </span>
-              {% if answer.question.anonymous %}
+              {% if info.answer.question.anonymous %}
                 anonymous
               {% else %}
-                {{ answer.question.sender.username }}
+                {{ info.answer.question.sender.username }}
               {% endif %}
             </p>
           </div>
