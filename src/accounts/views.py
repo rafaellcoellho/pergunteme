@@ -86,7 +86,7 @@ class HomeView(CreateView):
         my_user_id = request.user.id
         answers_queryset = Answer.objects.select_related("question").filter(
             question__adressee=my_user_id
-        ).aggregate
+        )
 
 
         def process_information(answer):
