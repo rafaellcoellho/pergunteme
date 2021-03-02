@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Explore | pergunte.me{% endblock %}
 
@@ -13,6 +14,32 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Explore</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="row justify-content-end">
+          <div class="col-3">
+            <select name="order" class="custom-select">
+              <option value="" selected>Order</option>
+              <option value="asc">Asc</option>
+              <option value="desc">Desc</option>
+            </select>
+          </div>
+          <div class="col-1">
+            <button
+              type="submit"
+              name="commit"
+              class="btn btn-success"
+            >
+              Order
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 

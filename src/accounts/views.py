@@ -26,6 +26,17 @@ class ExploreView(ListView):
         all_users = CustomUser.objects.exclude(id=my_user_id).exclude(is_superuser=True)
         return render(request, self.template_name, {"all_users": all_users})
 
+    def post(self, request):
+        order = request.POST.get("order")
+        my_user_id = request.user.id
+
+        if order == "desc":
+            all_users = CustomUser.objects.exclude(id=my_user_id).exclude(is_superuser=True).order_by('-username')
+        else:
+            all_users = CustomUser.objects.exclude(id=my_user_id).exclude(is_superuser=True).order_by('username')
+
+        return render(request, self.template_name, {"all_users": all_users})
+
 
 class ProfileView(CreateView):
     template_name = "account/profile.html"
@@ -75,7 +86,7 @@ class HomeView(CreateView):
         my_user_id = request.user.id
         answers_queryset = Answer.objects.select_related("question").filter(
             question__adressee=my_user_id
-        )
+        ).aggregate
 
 
         def process_information(answer):
