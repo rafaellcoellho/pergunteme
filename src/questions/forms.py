@@ -16,7 +16,6 @@ class AnswerForm(ModelForm):
 
 
 class LikeForm(ModelForm):
-
     class Meta:
         model = Like
         fields = ["user", "answer"]
@@ -27,14 +26,10 @@ class LikeForm(ModelForm):
 
 
 class QuestionForm(ModelForm):
-
     class Meta:
         model = Question
         fields = ["content", "anonymous", "sender", "adressee"]
-        labels = {
-            "content": "Send a question",
-            "anonymous": "Send anonymously"
-        }
+        labels = {"content": "Send a question", "anonymous": "Send anonymously"}
         widgets = {
             "content": Textarea(attrs={"rows": 3}),
             "sender": HiddenInput(),
