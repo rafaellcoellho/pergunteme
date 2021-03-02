@@ -12,7 +12,9 @@
 {% include 'navbar.html' %}
 <div class="container received-questions">
   <h1 class="title">Received Questions</h1>
-
+  <div class="py-3">
+    {% include 'messages.html' %}
+  </div>
   {% for info in infos_unanswered_questions %}
     <div class="list-received-questions">
       <div class="row">
@@ -28,7 +30,6 @@
             {% endif %}
           </small>
           <h1>{{ info.question.content }} </h1>
-
           <form method="POST">
             {% csrf_token %}
             {{info.form|crispy}}
@@ -39,7 +40,6 @@
               Reply
             </button>
           </form>
-          {% comment %} <%= render 'answers/form', answer: Answer.new, question: question %> {% endcomment %}
         </div>
       </div>
     </div>

@@ -2,12 +2,14 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
+from django.shortcuts import redirect
+from django.contrib import messages
 
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 
 from questions.models import Answer
-from questions.forms import LikeForm
+from questions.forms import LikeForm, QuestionForm
 
 
 class SignUpView(CreateView):
@@ -25,12 +27,31 @@ class ExploreView(ListView):
         return render(request, self.template_name, {"all_users": all_users})
 
 
-class ProfileView(DetailView):
+class ProfileView(CreateView):
     template_name = "account/profile.html"
 
     def get(self, request, user_username):
+        my_user_id = request.user.id
         user = CustomUser.objects.get(username=user_username)
-        return render(request, self.template_name, {"profile": user})
+        answers = list(Answer.objects.select_related('question').filter(question__adressee=user.id))
+        form = QuestionForm(initial={"sender": my_user_id, "adressee": user.id})
+        context = {
+            "form": form,
+            "profile": user,
+            "answers": answers,
+            "number_of_answered_questions": len(answers)
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, user_username):
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Question added! When the user responds he will appear here on his profile!')
+            return redirect('profile', user_username=user_username)
+
+        context = {"form": form}
+        return render(request, self.template_name, context)
 
 
 class HomeView(CreateView):

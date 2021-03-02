@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Textarea, HiddenInput
-from .models import Answer, Like
+from .models import Answer, Like, Question
 
 
 class AnswerForm(ModelForm):
@@ -23,4 +23,20 @@ class LikeForm(ModelForm):
         widgets = {
             "user": HiddenInput(),
             "answer": HiddenInput(),
+        }
+
+
+class QuestionForm(ModelForm):
+
+    class Meta:
+        model = Question
+        fields = ["content", "anonymous", "sender", "adressee"]
+        labels = {
+            "content": "Send a question",
+            "anonymous": "Send anonymously"
+        }
+        widgets = {
+            "content": Textarea(attrs={"rows": 3}),
+            "sender": HiddenInput(),
+            "adressee": HiddenInput(),
         }
