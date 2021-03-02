@@ -8,7 +8,7 @@ from django.contrib import messages
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 
-from questions.models import Answer
+from questions.models import Answer, Like
 from questions.forms import LikeForm, QuestionForm
 
 
@@ -68,13 +68,46 @@ class HomeView(CreateView):
             question__adressee=my_user_id
         )
 
+
         def process_information(answer):
             return {
                 "form": LikeForm(initial={"user": my_user_id, "answer": answer.id}),
                 "answer": answer,
+                "number_of_likes": answer.like_set.count(),
+                "current_user_like": answer.like_set.filter(user=my_user_id).exists()
             }
 
         infos = list(map(process_information, answers_queryset))
 
         context = {"infos_answers": infos, "number_of_answered_questions": len(infos)}
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = LikeForm(request.POST)
+        user = form.data["user"]
+        answer = form.data["answer"]
+
+        like_exists = False
+        try:
+            like = Like.objects.get(user=user, answer=answer)
+            like_exists = True
+        except Like.DoesNotExist:
+            like_exists = False
+
+        if like_exists:
+            like.delete()
+            messages.error(
+                request,
+                "Don't you like that answer anymore? What a pity",
+            )
+            return redirect("home")
+        elif form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "You liked this answer!",
+            )
+            return redirect("home")
+
+        context = {"form": form}
         return render(request, self.template_name, context)

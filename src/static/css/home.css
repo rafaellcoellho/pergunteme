@@ -104,3 +104,19 @@
   margin: auto;
   margin-bottom: 15px;
 }
+.home .btn-like {
+  background-color: rgba(214, 0, 66, 0.0);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.home .btn-like :hover {
+  color: rgba(214, 0, 66, 0.55);
+  cursor: pointer;
+}
+.home .btn-like-gray i {
+  color: gray;
+}
+.btn-like-red i{
+  color: #d60042;
+}
